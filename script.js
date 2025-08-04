@@ -1,10 +1,3 @@
-//Add simple addEventListener to fulfill action on click 
-const clickBtn = document.getElementById('click-me');
-
-clickBtn.addEventListener('click', () => {
-    console.log("Button clicked");
-});
-
 // Change content independently from HTML 
 const output = document.getElementById('output');
 output.textContent = '42';
@@ -12,13 +5,36 @@ output.textContent = '42';
 // Add eventlistener to all buttons 
 const numberButtons = document.querySelectorAll('.buttons button');
 
+var Number1 = ''; 
+var Number2 = ''; 
+var operator = ''; 
+var waitingForNextNumber = false; 
+
+const digits = ['1','2','3','4','5','6','7','8','9','0'];
+const operators = ['+', '-', '*', '/'];
+
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
         console.log(button.textContent);
-        input.textContent = button.textContent; 
+        input.textContent += button.textContent; 
+
+        if(digits.includes(button.textContent)){
+            if(waitingForNextNumber === false){
+                Number1 += button.textContent;
+                console.log('Number 1 is: ', Number1);
+                } else {
+                    Number2 += button.textContent;
+                    console.log('Number 2 is: ', Number2);
+                    }
+            } else if(operators.includes(button.textContent)){
+                operator = button.textContent;
+                waitingForNextNumber = true; 
+                console.log('Chosen operator is: ', operator);
+                } 
     });
 });
 
+// Grundsätzliche Taschenrechner Operationen 
 function operate(a, operator, b) {
     a = Number(a);
     b = Number(b);
@@ -37,4 +53,5 @@ function operate(a, operator, b) {
     }
 }
 
+//Anzeige was man getippt hat 
 const input = document.getElementById('input');
