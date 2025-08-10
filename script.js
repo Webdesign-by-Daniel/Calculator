@@ -9,9 +9,11 @@ var Number1 = '';
 var Number2 = ''; 
 var operator = ''; 
 var waitingForNextNumber = false; 
+var result = '';
 
 const digits = ['1','2','3','4','5','6','7','8','9','0'];
 const operators = ['+', '-', '*', '/'];
+const resultOperator = '=';
 
 numberButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -30,7 +32,10 @@ numberButtons.forEach((button) => {
                 operator = button.textContent;
                 waitingForNextNumber = true; 
                 console.log('Chosen operator is: ', operator);
-                } 
+                } else if(resultOperator.includes(button.textContent)) {
+                    result = operate(Number1, operator, Number2);
+                    console.log(result);
+                }
     });
 });
 
