@@ -16,7 +16,7 @@
 ## Calculation Logic
 - [x] Implement calculation based on operator (`+`, `-`, `*`, `/`)
 - [x] Display calculation result in `input.textContent`
-- [ ] Reset variables after calculation
+- [x] Reset variables after calculation
 
 ## Extra Features
 - [x] Add "Clear" button to reset all variables

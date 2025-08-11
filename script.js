@@ -13,6 +13,7 @@ const numberButtons = document.querySelectorAll('.buttons button');
 var Number1 = '0'; 
 var Number2 = '0'; 
 var operator = ''; 
+var operator_stored = '';
 var waitingForNextNumber = false; 
 var result = '';
 
@@ -20,28 +21,34 @@ const digits = ['1','2','3','4','5','6','7','8','9','0'];
 const operators = ['+', '-', '*', '/'];
 const resultOperator = '=';
 
-numberButtons.forEach((button) => {             // Eventlistener for clicking any button 
+numberButtons.forEach((button) => {             
     button.addEventListener('click', () => {
-        input.textContent += button.textContent; //whatever button we click is being shown in the input text 
+        input.textContent += button.textContent; 
         if(digits.includes(button.textContent)){ //check if the button clicked is part of numbers
-            if(waitingForNextNumber === false){  //Loop 
-                Number1 = '';
+            if(waitingForNextNumber === false){  
                 Number1 += button.textContent;
                 } else {
-                    Number2 = '';
                     Number2 += button.textContent;
                     }
-            } else if(operators.includes(button.textContent)){
+            } else if(operators.includes(button.textContent)){ //Clicking any operator
+                if(Number2 !== ''){
+                    Number1 = operate(Number1, operator, Number2);
+                    Number2 = '';
+                    operator = button.textContent;
+                    waitingForNextNumber = true; 
+                }
                 operator = button.textContent;
                 waitingForNextNumber = true; 
-                } else if(resultOperator.includes(button.textContent)) {
+                } else if(resultOperator.includes(button.textContent)) { //Clicking '=' operator 
                     result = operate(Number1, operator, Number2);
                     output.textContent += ' ' + result; 
                     Number1 = result; 
-                    Number2 = '0';
+                    Number2 = '';
                     result = '';
-                    output.textContent = Number1;
-                }
+                    waitingForNextNumber = true; 
+                    input.textContent = 'Input: ' + Number1;
+                    output.textContent = 'Result: ' + Number1;
+                } 
     });
 });
 
