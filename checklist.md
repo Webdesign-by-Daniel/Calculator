@@ -20,7 +20,7 @@
 
 ## Extra Features
 - [x] Add "Clear" button to reset all variables
-- [ ] Handle decimal points
-- [ ] Prevent multiple operators in a row
-- [ ] Prevent multiple decimal points in a single number
-- [ ] Support chaining operations without pressing "equals"
+- [x] Handle decimal points
+- [x] Prevent multiple operators in a row
+- [x] Prevent multiple decimal points in a single number
+- [x] Support chaining operations without pressing "equals"

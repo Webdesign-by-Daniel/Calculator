@@ -52,9 +52,10 @@ numberButtons.forEach((button) => {
                     Number1 = result; 
                     Number2 = '';
                     result = '';
+                    operator = '';
                     waitingForNextNumber = true; 
-                    input.textContent = 'Input: ' + Number1;
-                    output.textContent = 'Result: ' + Number1;
+                    input.textContent = 'Input: ' + trim(Number1);
+                    output.textContent = 'Result: ' + trim(Number1);
                 } 
     });
 });
@@ -91,5 +92,17 @@ function operate(a, operator, b) {
         return 'Unknown Operator'; 
     }
 }
+
+//Kürzen von Dezimalpunkten 
+
+function trim(a){
+    a = Number(a);
+    if(!Number.isInteger(a)){
+        a = a.toFixed(2); 
+    }
+    return a; 
+}
+
+
 
 
