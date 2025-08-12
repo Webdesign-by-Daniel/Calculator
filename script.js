@@ -31,12 +31,19 @@ numberButtons.forEach((button) => {
                     Number2 += button.textContent;
                     }
             } else if(operators.includes(button.textContent)){ //Clicking any operator
-                if(Number2 !== ''){
-                    Number1 = operate(Number1, operator, Number2);
-                    Number2 = '';
+                if(operator == ''){ 
                     operator = button.textContent;
                     waitingForNextNumber = true; 
-                }
+                    } else {
+                        result = operate(Number1, operator, Number2);
+                        input.textContent = result; 
+                        Number1 = result; 
+                        Number2 = '';
+                        result = '';
+                        waitingForNextNumber = true; 
+                        operator = '';
+                        input.textContent += button.textContent;
+                    }
                 operator = button.textContent;
                 waitingForNextNumber = true; 
                 } else if(resultOperator.includes(button.textContent)) { //Clicking '=' operator 
